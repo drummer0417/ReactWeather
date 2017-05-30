@@ -12,7 +12,10 @@ var React = require('react');
 // can only be used in case you only have a render method... so no state!
 var Examples = (props) => {
   return (
-    <h3>Examples Component 0.1</h3>
+    <div>
+      <h3>Examples</h3>
+      <p>Welcome to the examples page</p>
+    </div>
   )
 }
 

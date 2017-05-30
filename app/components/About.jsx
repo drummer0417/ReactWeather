@@ -13,7 +13,12 @@ var React = require('react');
 
 var About = (props) => {
   return (
-    <h3>About React Weather 0.1</h3>
+    <div>
+      <h3>About</h3>
+      <p>This is version 0.1 of HansWeatherApp<br/><br/>
+        Can't wait to add some style to make it look less terrible
+      </p>
+    </div>
   )
 }
 module.exports = About;
