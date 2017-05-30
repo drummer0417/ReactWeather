@@ -2,7 +2,7 @@ var React = require('react');
 
 var WeatherForm = React.createClass({
 
-  onFormSubmit: function(event){
+  onFormSubmit: function(event) {
     event.preventDefault();
 
     var location = this.refs.location.value;
@@ -12,12 +12,9 @@ var WeatherForm = React.createClass({
       this.props.onSearch(location);
     }
   },
-  render: function(){
-    return(
+  render: function() {
+    return (
       <form onSubmit={this.onFormSubmit}>
-        <div>
-          <h1>Get Weather</h1>
-        </div>
         <div>
           <input ref="location" placeholder="Your location" autoFocus />
         </div>
