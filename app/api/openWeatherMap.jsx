@@ -18,13 +18,12 @@ module.exports = {
       } else {
         return {
           temp: res.data.main.temp,
-          city: res.data.name
+          city: res.data.name,
+          country: res.data.sys.country
         };
       };
     }, function(res) {
-      throw new Error(res);
-    }).catch(function(error) {
-      throw new Error(error);
+      throw new Error(res.response.data.message);
     });
   }
 };
