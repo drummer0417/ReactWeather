@@ -34,6 +34,7 @@ var Weather = React.createClass({
         isLoading: false,
         errorMessage: error.message
       })
+      alert('Unable to fetch weather: ', error.message);
     });
   },
   render: function() {
@@ -45,7 +46,7 @@ var Weather = React.createClass({
 
     function renderError() {
       if (errorMessage) {
-        return <ErrorModal title="Unable to fetch weather" message={errorMessage} />
+        // return <ErrorModal title="Unable to fetch weather" message={errorMessage} />
       }
     }
 
