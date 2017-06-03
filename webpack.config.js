@@ -2,6 +2,7 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: [
+    "babel-polyfill",
     'script!jquery/dist/jquery.min.js',
     'script!foundation-sites/dist/js/foundation.min.js',
     './app/app.jsx'
@@ -22,13 +23,14 @@ module.exports = {
   resolve: {
     root: __dirname,
     alias: {
+      About: 'app/components/About.jsx',
+      Examples: 'app/components/Examples.jsx',
+      ErrorModal: 'app/components/ErrorModal.jsx',
       Main: 'app/components/Main.jsx',
       Nav: 'app/components/Nav.jsx',
       Weather: 'app/components/Weather.jsx',
       WeatherForm: 'app/components/WeatherForm.jsx',
       WeatherText: 'app/components/WeatherText.jsx',
-      About: 'app/components/About.jsx',
-      Examples: 'app/components/Examples.jsx',
       openWeatherMap: 'app/api/openWeatherMap.jsx'
     },
     extensions: ['', '.js', '.jsx']

@@ -1,21 +1,22 @@
 var React = require('react');
+var ErrorModal = require('ErrorModal');
 var WeatherForm = require('WeatherForm');
 var WeatherText = require('WeatherText');
 var openWeatherMap = require('openWeatherMap')
 
 var Weather = React.createClass({
 
-  // getDefaultProps: function() {
-  //   return {
-  //     weatherText: 'It\'s 34 degrees Celcius in Eindhoven!!'
-  //   };
-  // },
   getInitialState: function() {
-    return { isLoading: false }
+    return {
+      isLoading: false
+    }
   },
   handleSearch: function(location) {
 
-    this.setState({ isLoading: true });
+    this.setState({
+      isLoading: true,
+      errorMessage: undefined
+    });
 
     openWeatherMap.getTemp(location).then((result) => {
       console.log('temp: ', result.temp);
@@ -25,14 +26,14 @@ var Weather = React.createClass({
         temp: result.temp,
         isLoading: false
       });
-    }, (errorMessage) => {
-      console.log('errorMessage in weather.jsx: ', errorMessage);
+    }, (error) => {
+      console.log('errorMessage in weather.jsx: ', error);
       this.setState({
         location: '',
         temp: '',
-        isLoading: false
+        isLoading: false,
+        errorMessage: error.message
       })
-      alert('Unable to fetch wether:\n' + errorMessage);
     });
   },
   render: function() {
@@ -40,7 +41,13 @@ var Weather = React.createClass({
     // var location = this.state.location;
     // var temp = this.state.temp;
     // line below is exactly the same as the 2 lines above
-    var { isLoading, location, country, temp } = this.state;
+    var { errorMessage, isLoading, location, country, temp } = this.state;
+
+    function renderError() {
+      if (errorMessage) {
+        return <ErrorModal title="Unable to fetch weather" message={errorMessage} />
+      }
+    }
 
     function renderText() {
       if (isLoading) {
@@ -58,6 +65,7 @@ var Weather = React.createClass({
         <h1 className="text-center">Get Weather</h1>
         <WeatherForm onSearch={this.handleSearch}/>
         {renderText()}
+        {renderError()}
       </div>
     );
   }
