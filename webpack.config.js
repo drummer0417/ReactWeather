@@ -7,7 +7,7 @@ module.exports = {
     'script!foundation-sites/dist/js/foundation.min.js',
     './app/app.jsx'
   ],
-  extrnals: {
+  externals: {
     jquery: 'jQuery'
   },
   plugins: [
@@ -24,6 +24,7 @@ module.exports = {
     root: __dirname,
     alias: {
       About: 'app/components/About.jsx',
+      applicationStyles: 'app/styles/app.css',
       Examples: 'app/components/Examples.jsx',
       ErrorModal: 'app/components/ErrorModal.jsx',
       Main: 'app/components/Main.jsx',
@@ -36,14 +37,16 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   module: {
-    loaders: [{
-      loader: 'babel-loader',
-      query: {
-        presets: ['react', 'es2015', 'stage-0']
-      },
-      test: /\.jsx?$/,
-      exclude: /(node_modules|bower_components)/
-    }]
+    loaders: [
+      {
+        loader: 'babel-loader',
+        query: {
+          presets: ['react', 'es2015', 'stage-0']
+        },
+        test: /\.jsx?$/,
+        exclude: /(node_modules|bower_components)/
+      }
+    ]
   },
   devtool: 'cheap-module-eval-source-map'
-}
+};
