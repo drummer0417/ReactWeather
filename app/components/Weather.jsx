@@ -11,10 +11,31 @@ var Weather = React.createClass({
       isLoading: false
     }
   },
-  handleSearch: function(location) {
+  // runs when dom is build
+  componentDidMount: function () {
+    this.handleLocationFromUrl(this.props.location.query.location);
+  },
+  // runs when a prop is updated (in this case location in url)
+  componentWillReceiveProps: function(newProps){
+    this.handleLocationFromUrl(newProps.location.query.location);
+    },
+  handleLocationFromUrl: function(location){
+    console.log('in handleLocationFromUrl, location:', location);
+    if (location && location.length > 0) {
+      // do the search
+      this.handleSearch(location);
+      // remove location param from url
+      window.location.hash = '#/'
+    }
 
+  },
+  handleSearch: function(location) {
+    console.log('In handleSearch, location: ', location);
     this.setState({
       isLoading: true,
+      location: undefined,
+      country: undefined,
+      temp: undefined,
       errorMessage: undefined
     });
 
@@ -29,15 +50,12 @@ var Weather = React.createClass({
     }, (error) => {
       console.log('errorMessage in weather.jsx: ', error);
       this.setState({
-        location: '',
-        temp: '',
         isLoading: false,
         errorMessage: error.message
       })
     });
   },
   render: function() {
-
     // var location = this.state.location;
     // var temp = this.state.temp;
     // line below is exactly the same as the 2 lines above

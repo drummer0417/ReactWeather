@@ -24,7 +24,7 @@ var WeatherText = (props) => {
 
   return (
     <div>
-      <h5 className="text-center">It's {temp} degrees (celcius) in {location}, {country}</h5>
+      <h5 className="text-center">It's {temp} degrees in {location}, {country}</h5>
     </div>
   )
 }
