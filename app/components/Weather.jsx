@@ -27,7 +27,6 @@ var Weather = React.createClass({
       // remove location param from url
       window.location.hash = '#/'
     }
-
   },
   handleSearch: function(location) {
     console.log('In handleSearch, location: ', location);
